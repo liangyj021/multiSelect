@@ -1,0 +1,161 @@
+.multiSelect ul{
+}
+.multiSelect li{
+	list-style: none; 
+	float: left;
+}
+.multiSelect .title{ 
+	display: inline-block;
+	width: 10%;
+    float: left;
+    text-align: right;
+    line-height: 3em;
+}
+.multiSelect .content{ 
+	display: inline-block;
+	width: 80%; 
+	padding: 0 10px;
+	overflow: hidden;
+}
+.multiSelect .content ul li{
+	margin-left: 3px; 
+	padding: 2px;
+	cursor: pointer;
+}
+.multiSelect .content ul li .head,
+.multiSelect .level3 .content a{ 
+	border: 2px solid transparent;
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    padding-right: 30px;
+    line-height: 1.1em;
+}
+.multiSelect input[type=checkbox]{
+	margin-right: 5px;
+	vertical-align: bottom;
+}
+.multiSelect .content ul li .head{}
+.multiSelect .content ul li .head .num{
+	border-radius: 3px;
+    display: none;
+    min-width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 5px;
+    background: #6BAFBD;
+    top: 7px;
+}
+/*选择一部分*/
+.multiSelect .content ul li.selected-part{ 
+}
+.multiSelect .content ul li.selected-part .head{
+	border: 2px solid #6DB0BE;
+}
+.multiSelect .content ul li.selected-part .head span{
+	display: block;
+	background-color: #6DB0BE;
+}
+
+/*全选*/
+.multiSelect .content ul li.selected-all{ 
+}
+.multiSelect .content ul li.selected-all .head{
+	background: url(../img/icons.png) no-repeat right -1px;
+	border: 2px solid #BBB7D4;;
+}
+.multiSelect .content ul li.selected-all .head span{
+	display: none;
+}
+/*按下状态*/
+.multiSelect .content ul li.on{ 
+	background-color: #EAEAEA;
+}
+.multiSelect .content ul li.on .head{ 
+	border-color: transparent;
+	background: none;
+}
+.multiSelect .content ul li.on .head .num{
+	display: none;				
+}
+.multiSelect .right{
+	display: inline-block;
+	width: 5%;
+	line-height: 3em;
+}
+
+.multiSelect .level1,
+.multiSelect .level2,
+.multiSelect .level3{
+	padding: 5px;
+	overflow: hidden;
+	border-bottom: 1px dashed #E8E8E8;
+}
+.multiSelect .level1{
+	
+}
+.multiSelect .level2{
+	
+}
+/**level3 */
+.multiSelect .level3{
+	display: none;
+}
+.multiSelect .level3 .title a{
+    background: #E6E6E6;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.multiSelect .level3 .content a{
+}
+/*level3展示台*/
+.multiSelect .level3-stage{
+	position: relative;
+}
+.multiSelect .level3-stage .level3{
+	display: block!important;
+	
+}
+
+/* 已选择结果*/
+.multiSelect .selected-stage{}
+.multiSelect .selected-stage .item{
+    padding: 8px;
+    margin-left: 5px;
+	border: 1px solid #BECFDE;
+    display: inline-block;
+    position: relative;
+    padding-right: 30px;
+    line-height: 1.1em;
+    cursor: pointer;
+}
+.multiSelect .selected-stage .item .icon{
+	background: url(../img/icons.png) no-repeat 2px -33px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 100%;
+}
+.multiSelect .selected-stage .item.level1{
+	background-color: #D4ECFF;
+	border: 1px solid #BBCCDD;
+}
+.multiSelect .selected-stage .item.level2{
+	background-color: #FFF9D7;
+	border: 1px solid #E3CA2C;
+}
+.multiSelect .selected-stage .item.level3{
+	background-color: #FFEBE8;
+	border: 1px solid #E4A391;
+}
+.multiSelect .selected-stage .item.level1 .icon{
+	
+}
+.multiSelect .selected-stage .item.level2 .icon{
+	background-position:  2px -73px;
+}
+.multiSelect .selected-stage .item.level3 .icon{
+	background-position:  2px -113px;
+}

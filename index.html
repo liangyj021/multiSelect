@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="build/react.js"></script>
+		<script src="build/react-dom.js"></script>
+		<script src="build/browser.min.js" ></script>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<div class="multiSelect">
+			<div class="level1"></div>
+			<div id="">
+				<ul id="level2">
+				</ul>
+			</div>
+		</div>
+		<script type="text/babel">
+		
+			var data = ["a","b"];
+			ReactDom.render(
+				<li><a>{data}</a></li>
+			,document.getElementById("level2"));
+		</script>
+	</body>
+</html>
