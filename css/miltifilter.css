@@ -11,6 +11,11 @@
     text-align: right;
     line-height: 3em;
 }
+.multiSelect .right{
+	display: inline-block;
+	width: 5%;
+	line-height: 3em;
+}
 .multiSelect .content{ 
 	display: inline-block;
 	width: 80%; 
@@ -78,11 +83,6 @@
 .multiSelect .content ul li.on .head .num{
 	display: none;				
 }
-.multiSelect .right{
-	display: inline-block;
-	width: 5%;
-	line-height: 3em;
-}
 
 .multiSelect .level1,
 .multiSelect .level2,
@@ -101,10 +101,13 @@
 .multiSelect .level3{
 	display: none;
 }
-.multiSelect .level3 .title a{
+.multiSelect .level3 .title .btn-select-all{
     background: #E6E6E6;
     border-radius: 3px;
     padding: 5px 10px;
+}
+.multiSelect .level3 .title .btn-select-all.on{
+	background-color: #F5F5F5;
 }
 .multiSelect .level3 .content a{
 }
