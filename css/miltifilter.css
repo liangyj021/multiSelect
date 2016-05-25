@@ -45,11 +45,13 @@
 	border-radius: 3px;
     display: none;
     min-width: 15px;
-    height: 15px;
     position: absolute;
     right: 5px;
     background: #6BAFBD;
     top: 7px;
+    color: #FFF;
+    text-align: center;
+    padding: 1px 0;
 }
 /*选择一部分*/
 .multiSelect .content ul li.selected-part{ 
@@ -128,7 +130,9 @@
 }
 
 /* 已选择结果*/
-.multiSelect .selected-stage{}
+.multiSelect .selected-stage{
+	padding: 5px;
+}
 .multiSelect .selected-stage .item{
     padding: 8px;
     margin-left: 5px;

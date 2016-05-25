@@ -43,9 +43,12 @@ $(function() {
 			createNodeOnSelectedStage(nodeid);
 			//增加全选样式
 			$parentLi.addClass(cssSelectedAll);
-			//设置子节点全选
 			if (level == 2) {
+				//设置子节点全选
 				setChildAllSelected(nodeid);
+			}else if(level == 3){
+				//监听数量
+				setNum(nodeid, 1);
 			}
 		} else {
 			//从已选择行中删除
@@ -55,9 +58,32 @@ $(function() {
 			//取消子节点全选
 			if (level == 2) {
 				setChildAllUnselected(nodeid);
+			}else if(level == 3){
+				//监听数量
+				setNum(nodeid, -1);
 			}
 		}
 	});
+	function setNum(nodeid, num){
+		var parentId = getParentNodeidByObj(getNodeById(nodeid));
+		var $parent = getNodeById(parentId);
+		var childAmount = $parent.attr("data-child-amount");
+		var $num = $parent.find(".head .num");
+		debugger
+		if($num.text()==""){
+			num = num;
+		}else{
+			num = parseInt($num.text())+num;
+		}
+		
+		if(num>0){
+			$parent.addClass("selected-part");
+		}else{
+			$parent.removeClass("selected-part");
+		}
+		
+		$num.text(num);
+	}
 	//全选子节点
 	function setChildAllSelected(parentNodeId) {
 		var $parentNode = getNodeById();
