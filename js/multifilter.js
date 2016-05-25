@@ -37,15 +37,15 @@ $(function(){
 		var $this = $(this);
 		var $parentLi = $this.parents("li");
 		var nodeid = $parentLi.attr("data-node-id");
-		var text = $this.parent("a").text();
+//		var text = $this.parent("a").text();
 		var level = getLevel($this);
-		var className = "level"+level;
-		var obj = {className:className, nodeid:nodeid, text: text};
+//		var className = "level"+level;
+//		var obj = {className:className, nodeid:nodeid, text: text};
 		
 
 		if($this.is(':checked')){
 			//已选中行  插入节点
-			createNodeOnSelectedStage(obj);
+			createNodeOnSelectedStage(nodeid);
 			//增加全选样式
 			$parentLi.addClass(cssSelectedAll);
 			
@@ -54,7 +54,7 @@ $(function(){
 			case 1:
 				break;
 			case 2:
-				setChildAllSelected($parentLi, nodeid);
+				setChildAllSelected( nodeid);
 				break;
 			default:
 			}
@@ -63,44 +63,69 @@ $(function(){
 			deleteFromSelectedByID(nodeid);
 			//移除全选样式
 			$parentLi.removeClass(cssSelectedAll);
-			
 			switch(level)
 			{
 			case 1:
 				break;
 			case 2:
-				setChildAllUnselected($parentLi, nodeid);
+				setChildAllUnselected(nodeid);
 				break;
 			default:
 			}
 		}
 	});
 	//全选子节点
-	function setChildAllSelected($parentNode,parentNodeId){
+	function setChildAllSelected(parentNodeId){
+		var $parentNode = getNodeById();
 		$(".level3[data-parent-node-id = "+parentNodeId+"] .content li input[type=checkbox]").map(function(){
-//			this.checked = true;				
-			this.click();
+			if(this.checked == true){
+				return;
+			}
+			this.checked = true;
+			
+			var $node = $(this).parents("li");
+			var nodeid = $node.attr("data-node-id");
+			createNodeOnSelectedStage(nodeid)
 		});
 		//设置父节点
-		getNodeById(parentNodeId).addClass(cssSelectedAll);
-		setNodeChecked($parentNode);
+		$parentNode.addClass(cssSelectedAll);
+//		setNodeChecked($parentNode);
+		setNodeChecked(parentNodeId);
 	}
 	//取消子节点全选
-	function setChildAllUnselected($parentNode,parentNodeId){
+	function setChildAllUnselected(parentNodeId){
+		var $parentNode = getNodeById();
 		$(".level3[data-parent-node-id = "+parentNodeId+"] .content li input[type=checkbox]").map(function(){
-//			this.checked = false;				
-			this.click();
+			if(this.checked == false){
+				return;
+			}
+			this.checked = false;
+			
+			var $node = $(this).parents("li");
+			var nodeid = $node.attr("data-node-id");
+			deleteFromSelectedByID(nodeid);
 		});
 		//设置父节点
 		$parentNode.removeClass(cssSelectedAll);
-		setNodeUnchecked($parentNode);
+//		setNodeUnchecked($parentNode);
+		setNodeUnchecked(parentNodeId);
 	}
 	/**已选择行 生成节点*/
-	function createNodeOnSelectedStage(obj){
-		var a = $("<a class='item "+obj.className+"' data-ref-node-id='"+obj.nodeid+"'>"+obj.text+"<span class='icon'></span></a>");
+	function createNodeOnSelectedStage(nodeid){
+		var $node = getNodeById(nodeid);
+		var level = getLevel($node);
+		if(level==3){
+			var text = $node.children("a").text();
+		}else{
+			//level2
+			var text = $node.find(".head a").text();
+		}
+		var className = "level"+level;
+		
+		var a = $("<a class='item "+className+"' data-ref-node-id='"+nodeid+"'>"+text+"<span class='icon'></span></a>");
 		$(".selected-stage .content").append($(a));
 	}
-	/** 已选择*/
+	/** 已选择行 节点点击事件*/
 	$(".selected-stage .content").delegate(".item","click",function(event){
 		var $this = $(this);
 		//设置源checkbox为未选择状态
@@ -155,28 +180,35 @@ $(function(){
 	 * **/
 	function deleteFromSelectedByID(nodeid){
 		$(getRefNodeById(nodeid)).remove();
+		//修改数字 或全选样式
+		getNodeById(nodeid).click()
 	}
 	/**设置节点为未选中**/
 	function setNodeUncheckedById(nodeid){
-		var node = getNodeById(nodeid);
-		setNodeUnchecked(node);
+//		var node = getNodeById(nodeid);
+		setNodeUnchecked(nodeid);
 		
 		deleteFromSelectedByID(nodeid);
 		
 	}
 	/** 通过node取消checkbox选中*/
-	function setNodeUnchecked(node){
-		if($(node).find("input[type=checkbox]").length == 0){
+	function setNodeUnchecked(nodeid){
+		var node = getNodeById(nodeid);
+		if(node.find("input[type=checkbox]").length == 0){
 			return;
 		}
-		$(node).find("input[type=checkbox]")[0].checked = false;
+		node.find("input[type=checkbox]")[0].checked = false;
+		node.removeClass(cssSelectedAll);
+		//设计level2样式
 	}
 	/** 通过node设置checkbox为选中*/
-	function setNodeChecked(node){
-		if($(node).find("input[type=checkbox]").length == 0){
+	function setNodeChecked(nodeid){
+		var node = getNodeById(nodeid);
+		if(node.find("input[type=checkbox]").length == 0){
 			return;
 		}
-		$(node).find("input[type=checkbox]")[0].checked = true;
+		node.find("input[type=checkbox]")[0].checked = true;
+		//设置level2样式
 	}
 	/**获取节点所在层级**/
 	function getLevel(obj){

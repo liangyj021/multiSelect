@@ -101,12 +101,20 @@
 .multiSelect .level3{
 	display: none;
 }
-.multiSelect .level3 .title .btn-select-all{
+.multiSelect .level3 .title a{
+	color: #777777;
+	background: #F8F8F8;
+	padding: 5px;
+}
+.multiSelect .level3 .right{
+	float: right;
+}
+.multiSelect .level3 .right .btn-select-all{
     background: #E6E6E6;
     border-radius: 3px;
     padding: 5px 10px;
 }
-.multiSelect .level3 .title .btn-select-all.on{
+.multiSelect .level3 .right .btn-select-all.on{
 	background-color: #F5F5F5;
 }
 .multiSelect .level3 .content a{
