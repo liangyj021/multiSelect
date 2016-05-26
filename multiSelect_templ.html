@@ -28,8 +28,8 @@
 				<div class="title">筛选辖区：</div>
 				<div class="content">
 					<ul>
-						<li class="selected-part" data-node-id="1" data-child-amount="3">
-							<div class="head"><a><input type="checkbox" value="0001">新疆维吾尔族自治区</a><span class="num">2</span></div>
+						<li data-node-id="1" data-child-amount="3">
+							<div class="head"><a><input type="checkbox" value="0001">新疆维吾尔族自治区</a><span class="num"></span></div>
 							<div class="level3" data-parent-node-id="1">
 								<div class="title">
 									<a class="btn-select-all">新疆维吾尔族自治区:</a>
@@ -46,9 +46,9 @@
 								</div>
 							</div>
 						</li>
-						<li class="selected-all" data-node-id="2" >
+						<li data-node-id="2" data-child-amount="9">
 							<div class="head"><a><input type="checkbox" value="0002">乌鲁木齐市</a><span class="num"></span></div>
-							<div class="level3" data-parent-node-id="2"  data-child-amount="9">
+							<div class="level3" data-parent-node-id="2">
 								<div class="title">
 									<a class="btn-select-all">乌鲁木齐市:</a>
 								</div>
@@ -70,7 +70,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="on" data-node-id="3" data-child-amount="0">
+						<li class="on" data-node-id="3" data-child-amount="6">
 							<div class="head"><a><input type="checkbox">克拉玛依市</a><span class="num"></span></div>
 							<div class="level3" data-parent-node-id="3">
 								<div class="title">
@@ -107,9 +107,11 @@
 			<div class="selected-stage">
 				<div class="title">已选择：</div>
 				<div class="content">
+					<!--
 					<a class="item level1" data-ref-node-id='123'>测试1 <span class="icon"></span></a>
 					<a class="item level2" data-ref-node-id='123'>测试2 <span class="icon"></span></a>
 					<a class="item level3" data-ref-node-id='123'>测试3 <span class="icon"></span></a>
+					-->
 				</div>
 				<div class="right"></div>
 			</div>
@@ -119,7 +121,6 @@
 		
 		
 		<input type="submit" name="查询" />
-		<input type="button" name="重置" />
 		
 		<div id="paper"></div>
 		<script>

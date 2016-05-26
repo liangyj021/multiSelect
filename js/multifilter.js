@@ -67,24 +67,30 @@ $(function() {
 	function setNum(nodeid, num){
 		var parentId = getParentNodeidByObj(getNodeById(nodeid));
 		var $parent = getNodeById(parentId);
-		var childAmount = $parent.attr("data-child-amount");
+		var amount = $parent.attr("data-child-amount");
 		var $num = $parent.find(".head .num");
-		debugger
+		
 		if($num.text()==""){
 			num = num;
 		}else{
 			num = parseInt($num.text())+num;
 		}
-		
-		if(num>0){
-			$parent.addClass("selected-part");
-		}else{
-			$parent.removeClass("selected-part");
+		if(num==0){
+			$parent.removeClass(cssSelectedPart);
+			$parent.removeClass(cssSelectedAll);
+		}else if(num>0 && num<amount){
+			$parent.addClass(cssSelectedPart);
+			$parent.removeClass(cssSelectedAll);
+		}else if(num == amount){
+			$parent.addClass(cssSelectedAll)			
+//			$parent.removeClass(cssSelectedPart);
 		}
-		
 		$num.text(num);
 	}
-	//全选子节点
+	/**
+	 * 全选三级节点
+	 * @parentNodeId 三级节点对应的二级节点ID
+	 * */
 	function setChildAllSelected(parentNodeId) {
 		var $parentNode = getNodeById();
 		$(".level3[data-parent-node-id = " + parentNodeId + "] .content li input[type=checkbox]").map(function() {
@@ -95,13 +101,17 @@ $(function() {
 
 			var $node = $(this).parents("li");
 			var nodeid = $node.attr("data-node-id");
-			createNodeOnSelectedStage(nodeid)
+			createNodeOnSelectedStage(nodeid);
+			setNum(nodeid, 1);
 		});
 		//设置父节点
 		$parentNode.addClass(cssSelectedAll);
 		setNodeChecked(parentNodeId);
 	}
-	//取消子节点全选
+	/**
+	 * 全部取消三级节点
+	 * @parentNodeId 三级节点对应的二级节点ID
+	 * */
 	function setChildAllUnselected(parentNodeId) {
 		var $parentNode = getNodeById();
 		$(".level3[data-parent-node-id = " + parentNodeId + "] .content li input[type=checkbox]").map(function() {
@@ -113,6 +123,7 @@ $(function() {
 			var $node = $(this).parents("li");
 			var nodeid = $node.attr("data-node-id");
 			deleteFromSelectedByID(nodeid);
+			setNum(nodeid, -1);
 		});
 		//设置父节点
 		$parentNode.removeClass(cssSelectedAll);
@@ -134,6 +145,7 @@ $(function() {
 		var a = $("<a class='item " + className + "' data-ref-node-id='" + nodeid + "'>" + text + "<span class='icon'></span></a>");
 		$(".selected-stage .content").append($(a));
 	}
+
 	/** 已选择行 节点点击事件*/
 	$(".selected-stage .content").delegate(".item", "click", function(event) {
 		var $this = $(this);
@@ -142,6 +154,16 @@ $(function() {
 		setNodeUncheckedById(nodeid);
 		//删除自己
 		$this.remove();
+		
+		var level = getLevel(getNodeById(nodeid));
+		//监听数量
+		if(level == 3){
+			setNum(nodeid, -1);
+		}else if(level == 2){
+			//取消子节点checkbox
+			debugger
+			setChildAllUnselected(nodeid);
+		}
 	});
 	//全选按钮事件
 	$(".level3").delegate(".btn-select-all", "click", function() {
@@ -190,13 +212,22 @@ $(function() {
 	function deleteFromSelectedByID(nodeid) {
 		$(getRefNodeById(nodeid)).remove();
 		//修改数字 或全选样式
-		getNodeById(nodeid).click()
+		var node =getNodeById(nodeid);
+		node.click();
+		
+		//取消三级checkbox同时，需要取消二级的checkbox
+		var level = getLevel(node);
+		if(level==3){
+			var parentid = getParentNodeidByObj(node);
+//			var parentNode = getNodeById(parentid);
+			setNodeUnchecked(parentid);
+		}
 	}
 	/**设置节点为未选中**/
 	function setNodeUncheckedById(nodeid) {
-		//		var node = getNodeById(nodeid);
+		//取消checkbox
 		setNodeUnchecked(nodeid);
-
+		//从已选择行删除
 		deleteFromSelectedByID(nodeid);
 	}
 	/** 通过node取消checkbox选中*/
@@ -207,7 +238,7 @@ $(function() {
 		}
 		node.find("input[type=checkbox]")[0].checked = false;
 		node.removeClass(cssSelectedAll);
-		//设计level2样式
+		
 	}
 	/** 通过node设置checkbox为选中*/
 	function setNodeChecked(nodeid) {
