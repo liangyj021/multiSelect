@@ -4,7 +4,7 @@ $(function() {
 	var cssBtnQuanxuan = "on"; //全选按钮 选中样式
 	var state = {empty: "empty", part: "part", all: "all"};
 	
-	$(".multiSelect>.level2>.content>ul>li").delegate(".head", "click", function(event) {
+	$(".multiSelect .level2>.content>ul>li").delegate(".header", "click", function(event) {
 		putOldChildBack(); //将原child放回相应的parent
 		//展示数据
 		var $this = $(this);
@@ -25,7 +25,8 @@ $(function() {
 		var $level3Stage = $(".multiSelect .level3-stage");
 		var $childOld = $level3Stage.children(".level3");
 		var parentNodeId = $level3Stage.children(".level3").attr("data-parent-node-id");
-		var $parentNode = $(".multiSelect .level2 .content ul li[data-node-id=" + parentNodeId + "]");
+	debugger
+var $parentNode = $(".multiSelect .level2 .content ul li[data-node-id=" + parentNodeId + "]");
 
 		$parentNode.append($childOld);
 	}
@@ -35,6 +36,7 @@ $(function() {
 //	});
 	/** checkbox单击事件*/
 	$(".multiSelect input[type=checkbox]").click(function(event) {
+		debugger
 //		event.stopPropagation();
 		var $this = $(this);
 		var $parentLi = $this.parents("li");
@@ -46,7 +48,15 @@ $(function() {
 			createNodeOnSelectedStage(nodeid);
 			//增加全选样式
 			$parentLi.addClass(cssSelectedAll);
-			if (level == 2) {
+			if (level == 1) {
+				//设置子节点全选
+//				$(".multiSelect input[type=checkbox]").map(function(){
+//					this.checked = true;
+//					$(this).parents("li").addClass(cssSelectedAll)
+//					debugger
+//				});
+				debugger
+			}else if (level == 2) {
 				//设置子节点全选
 				setChildAllSelected(nodeid);
 			}else if(level == 3){
@@ -59,7 +69,9 @@ $(function() {
 			//移除全选样式
 			$parentLi.removeClass(cssSelectedAll);
 			//取消子节点全选
-			if (level == 2) {
+			if (level == 1) {
+//				$(".multiSelect input[type=checkbox]").checked = false;
+			}else if (level == 2) {
 				setChildAllUnselected(nodeid);
 			}else if(level == 3){
 				//监听数量
@@ -82,12 +94,16 @@ $(function() {
 				setNum(nodeid, -1);
 			}
 		}
+		
+		//检测全选状态
+		//判断当前层级
+		//当前层级是否全选
 	});
 
 	function getState(nodeid){
 		var parentId = getParentNodeidByObj(getNodeById(nodeid));
 		var $parent = getNodeById(parentId);
-		var $num = $parent.find(".head .num");
+		var $num = $parent.find(".header .num");
 		var amount = $parent.attr("data-child-amount");
 		
 		var num=0;
@@ -103,12 +119,13 @@ $(function() {
 			return state.all;
 		}else{
 			alert("出错了")
+			debugger
 		}
 	}
 	function getNum(nodeid){
 		var parentId = getParentNodeidByObj(getNodeById(nodeid));
 		var $parent = getNodeById(parentId);
-		var $num = $parent.find(".head .num");
+		var $num = $parent.find(".header .num");
 		
 		var num = 0;
 		if($num.text()!=""){
@@ -119,7 +136,7 @@ $(function() {
 	function setNum(nodeid, num){
 		var parentId = getParentNodeidByObj(getNodeById(nodeid));
 		var $parent = getNodeById(parentId);
-		var $num = $parent.find(".head .num");
+		var $num = $parent.find(".header .num");
 		var amount = $parent.attr("data-child-amount");
 		
 		num = num + getNum(nodeid);
@@ -225,7 +242,7 @@ $(function() {
 			text = $node.children("a").text();
 		} else {
 			//level2
-			text = $node.find(".head a").text();
+			text = $node.find(".header a").text();
 		}
 
 		var a = $("<a class='item " + className + "' data-ref-node-id='" + nodeid + "'>" + text + "<span class='icon'></span></a>");
@@ -341,7 +358,7 @@ $(function() {
 	function setNodeChecked(nodeid) {
 		var node = getNodeById(nodeid);
 		if (node.find("input[type=checkbox]").length == 0) {
-			return;
+			return; 
 		}
 		node.find("input[type=checkbox]")[0].checked = true;
 	}
@@ -355,4 +372,18 @@ $(function() {
 			return 1;
 		}
 	}
+	/**展开收起**/
+	$(".multiSelect .switch-btn").delegate(".arrow", "click", function(){
+		var $this = $(this);
+		var $panel = $(".switch-panel");
+		$panel.slideToggle("normal");
+		$this.toggleClass("close", "slow");
+//		if($this.hasClass("close")){
+//			$this.animate({"background-position-y": "-207px" });
+//			$this.toggleClass("close", "fast");
+//		}else{
+//			$this.animate({"background-position-y": "-247px" });
+//			$this.toggleClass("close", "fast");
+//		}
+	});
 });

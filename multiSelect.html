@@ -1,135 +1,111 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8" />
 		<title></title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/miltifilter.css" />
 		<script type="text/javascript" src="build/jquery.min.js" ></script>
-		<script type="text/javascript" src="js/multifilter.js"></script>
-		<style>
-			
-		</style>
+		<script src="js/index.js"></script>
 	</head>
 	<body>
-		<div class="multiSelect">
-			<div class="level1">
-				<div class="title">本院：</div>
-				<div class="content">
-					<ul>
-						<li data-node-id="00">
-							<div class="head"><a><input type="checkbox">全省检察院</a><span class="num">123</span></div>
-						</li>
-					</ul>
-				</div>
-				<div class="right"></div>
-			</div>
-			<div class="level2">
-				<div class="title">筛选辖区：</div>
-				<div class="content">
-					<ul>
-						<li class="selected-part" data-node-id="1" data-child-amount="3">
-							<div class="head"><a><input type="checkbox" value="0001">新疆维吾尔族自治区</a><span class="num">2</span></div>
-							<div class="level3" data-parent-node-id="1">
-								<div class="title">
-									<a class="btn-select-all">新疆维吾尔族自治区:</a>
-								</div>
-								<div class="content">
-									<ul >
-										<li data-node-id="16"><a><input type='checkbox' value="000101">新疆维吾尔自治区人民检察院</a></li>
-										<li data-node-id="17"><a><input type='checkbox' value="000102">石河子市人民检察院</a></li>
-										<li data-node-id="18"><a><input type='checkbox' value="000102">乌鲁木齐八家户地区人民检察院</a></li>
-									</ul>
-								</div>
-								<div class="right">
-									<a class="btn-select-all">全选</a>
-								</div>
-							</div>
-						</li>
-						<li class="selected-all" data-node-id="2" >
-							<div class="head"><a><input type="checkbox" value="0002">乌鲁木齐市</a><span class="num"></span></div>
-							<div class="level3" data-parent-node-id="2"  data-child-amount="9">
-								<div class="title">
-									<a class="btn-select-all">乌鲁木齐市:</a>
-								</div>
-								<div class="content">
-									<ul>
-										<li data-node-id="19"><a><input type='checkbox' value="000201">乌鲁木齐市人民检察院</a></li>
-										<li data-node-id="20"><a><input type='checkbox' value="000202">天山区人民检察院</a></li>
-										<li data-node-id="21"><a><input type='checkbox' value="000203">沙依巴克区人民检察院</a></li>
-										<li data-node-id="22"><a><input type='checkbox' value="000204">新市区人民检察院</a></li>
-										<li data-node-id="23"><a><input type='checkbox' value="000205">乌鲁木齐县人民检察院</a></li>
-										<li data-node-id="24"><a><input type='checkbox' value="000206">头屯河区人民检察院</a></li>
-										<li data-node-id="25"><a><input type='checkbox' value="000207">达坂城区人民检察院</a></li>
-										<li data-node-id="26"><a><input type='checkbox' value="000208">米东区人民检察院</a></li>
-										<li data-node-id="27"><a><input type='checkbox' value="000209">水磨沟区人民检察院</a></li>
-									</ul>
-								</div>
-								<div class="right">
-									<a class="btn-select-all">全选</a>
-								</div>
-							</div>
-						</li>
-						<li class="on" data-node-id="3" data-child-amount="0">
-							<div class="head"><a><input type="checkbox">克拉玛依市</a><span class="num"></span></div>
-							<div class="level3" data-parent-node-id="3">
-								<div class="title">
-									<a class="btn-select-all">克拉玛依市:</a>
-								</div>
-								<div class="content">
-									<ul>
-										<li data-node-id="28"><a><input type='checkbox' value="000201">克拉玛依市人民检察院</a></li>
-										<li data-node-id="29"><a><input type='checkbox' value="000202">独山子区人民检察院</a></li>
-										<li data-node-id="30"><a><input type='checkbox' value="000203">乌尔禾区人民检察院</a></li>
-										<li data-node-id="31"><a><input type='checkbox' value="000204">新市区人民检察院</a></li>
-										<li data-node-id="32"><a><input type='checkbox' value="000205">白碱滩区人民检察院</a></li>
-										<li data-node-id="33"><a><input type='checkbox' value="000206">克拉玛依区人民检察院</a></li>
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li data-node-id="4" data-child-amount="0"><div class="head"><a><input type="checkbox">哈密检察分院</a><span class="num"></span></div></li>
-						<li data-node-id="5" data-child-amount="0"><div class="head"><a><input type="checkbox">昌吉回族自治州</a><span class="num"></span></div></li>
-						<li data-node-id="6" data-child-amount="0"><div class="head"><a><input type="checkbox">博州</a><span class="num"></span></div></li>
-						<li data-node-id="7" data-child-amount="0"><div class="head"><a><input type="checkbox">八音过了蒙古自治州</a><span class="num"></span></div></li>
-						<li data-node-id="9" data-child-amount="0"><div class="head"><a><input type="checkbox">新疆维吾尔族自治区和田分院</a><span class="num"></span></div></li>
-						<li data-node-id="10" data-child-amount="0"><div class="head"><a><input type="checkbox">喀什检察分院</a><span class="num"></span></div></li>
-						<li data-node-id="11" data-child-amount="0"><div class="head"><a><input type="checkbox">克孜勒苏柯尔克孜自治州</a><span class="num"></span></div></li>
-						<li data-node-id="12" data-child-amount="0"><div class="head"><a><input type="checkbox">伊犁哈萨克自治州</a><span class="num"></span></div></li>
-						<li data-node-id="13" data-child-amount="0"><div class="head"><a><input type="checkbox">塔城检察分院</a><span class="num"></span></div></li>
-						<li data-node-id="14" data-child-amount="0"><div class="head"><a><input type="checkbox">阿勒泰地区</a><span class="num"></span></div></li>
-						<li data-node-id="15" data-child-amount="0"><div class="head"><a><input type="checkbox">新疆维吾尔自治区乌鲁木齐铁路运输分院</a><span class="num"></span></div></li>
-					<ul>
-				</div>
-				<div class="right"></div>
-			</div>
-			<div class="level3-stage"></div>
-			<div class="selected-stage">
-				<div class="title">已选择：</div>
-				<div class="content">
-					<a class="item level1" data-ref-node-id='123'>测试1 <span class="icon"></span></a>
-					<a class="item level2" data-ref-node-id='123'>测试2 <span class="icon"></span></a>
-					<a class="item level3" data-ref-node-id='123'>测试3 <span class="icon"></span></a>
-				</div>
-				<div class="right"></div>
-			</div>
-		</div>
-		
-		
+		<div id="multiSelect"></div>
+		<script>
+			var data = {
+				leve1:{
+					parentNodeId:"",
+					data: [{name:"全省检察院", value:"00"}]
+				},
+				leve2:{
+					parentNodeId: 0,
+					data: [
+						{
+							name:"新疆维吾尔族自治区", 
+							value:"0001"
+						},
+						{name:"乌鲁木齐市", value:"0002"},
+						{name:"克拉玛依市", value:"0003"},
+						{name:"新疆维吾尔族自治区", value:"0004"},
+						{name:"哈密检察分院", value:"0005"},
+						{name:"昌吉回族自治州", value:"0006"},
+						{name:"博州", value:"0007"},
+						{name:"八音过了蒙古自治州", value:"0008"},
+						{name:"阿克苏分院", value:"0009"},
+						{name:"新疆维吾尔族自治区和田分院", value:"0010"},
+						{name:"喀什检察分院", value:"0011"},
+						{name:"克孜勒苏柯尔克孜自治州", value:"0012"},
+						{name:"伊犁哈萨克自治州", value:"0013"},
+						{name:"塔城检察分院", value:"0014"},
+						{name:"阿勒泰地区", value:"0015"},
+						{name:"新疆维吾尔自治区乌鲁木齐铁路运输分院", value:"0016"}
+					]
+				}
+			};
+			var dataLevel3_1 = {
+				parentNodeId: "1",
+				data: [
+					{name:"新疆维吾尔自治区人民检察院", value:"000101"},
+					{name:"石河子市人民检察院", value:"000102"},
+					{name:"乌鲁木齐八家户地区人民检察院", value:"000103"}]
+				};
+			var dataLevel3_2 = {
+				parentNodeId: "2",
+				data: [
+					{name:"乌鲁木齐市人民检察院",value:"000201"},
+					{name:"天山区人民检察院",value:"000202"},
+					{name:"沙依巴克区人民检察院",value:"000203"},
+					{name:"新市区人民检察院",value:"000201"},
+					{name:"乌鲁木齐县人民检察院",value:"000204"},
+					{name:"头屯河区人民检察院",value:"000205"},
+					{name:"达坂城区人民检察院",value:"000206"},
+					{name:"米东区人民检察院",value:"000207"},
+					{name:"水磨沟区人民检察院",value:"000208"}
+					]
+				};
+			var dataLevel3_3 = {
+				parentNodeId: "3",
+				data: [
+					{name:"新疆维吾尔自治区人民检察院", value:"000101"},
+					{name:"石河子市人民检察院", value:"000102"},
+					{name:"乌鲁木齐八家户地区人民检察院", value:"000103"}]
+				};
+			
+		</script>
 		
 		
 		<input type="submit" name="查询" />
-		<input type="button" name="重置" />
-		
 		<div id="paper"></div>
 		<script>
-			$("input[type=submit]").click(function(){
-				var values = $(".multiSelect input[type=checkbox]:checked").map(function(){
+		$myselect = $("#multiSelect").multiSelect(data);
+			//单击二级菜单获取三级菜单数据
+		$(".multiSelect .level2>.content>ul>li").delegate(".header", "click", function(event) {
+			var $btn = $(this);
+			var isHasChild = $myselect.isHasChild($btn);
+			var data_level3;
+			if (isHasChild == false) {
+				//没有子数据，根据二级节点的corpId去后台请求三级节点数据
+				//var parentCorpId = $btn.find("input")[0].value;
+				//data_level3=..
+				var parentNodeId = $btn.parents("li").attr("data-node-id");
+				var data_level3;
+				//获取数据
+				if(parentNodeId==1){
+					data_level3 = dataLevel3_1;
+				}else if(parentNodeId==2){
+					data_level3 = dataLevel3_2;
+				}else if(parentNodeId==3){
+					data_level3 = dataLevel3_3;
+				}
+			}
+			$myselect.level2Click($btn, data_level3);
+		});
+
+			$("input[type=submit]").click(function() {
+				var values = $(".multiSelect input[type=checkbox]:checked").map(function() {
 					return $(this).val();
 				}).toArray();
 				$("#paper").html(values.join(","));
 			});
-
 		</script>
 	</body>
 </html>

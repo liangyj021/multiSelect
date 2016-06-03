@@ -6,14 +6,16 @@
 }
 .multiSelect .title{ 
 	display: inline-block;
-	width: 10%;
+    width: 10%;
     float: left;
     text-align: right;
-    line-height: 3em;
+    line-height: 2.7em;
+    color: #767676;
+    font-size: 14px;
 }
 .multiSelect .right{
 	display: inline-block;
-	width: 5%;
+	max-width: 5%;
 	line-height: 3em;
 }
 .multiSelect .content{ 
@@ -26,8 +28,9 @@
 	margin-left: 3px; 
 	padding: 2px;
 	cursor: pointer;
+	float: left;
 }
-.multiSelect .content ul li .head,
+.multiSelect .content ul li .header,
 .multiSelect .level3 .content a{ 
 	border: 2px solid transparent;
     padding: 8px;
@@ -40,8 +43,8 @@
 	margin-right: 5px;
 	vertical-align: bottom;
 }
-.multiSelect .content ul li .head{}
-.multiSelect .content ul li .head .num{
+.multiSelect .content ul li .header{}
+.multiSelect .content ul li .header .num{
 	border-radius: 3px;
     display: none;
     min-width: 15px;
@@ -56,10 +59,10 @@
 /*选择一部分*/
 .multiSelect .content ul li.selected-part{ 
 }
-.multiSelect .content ul li.selected-part .head{
+.multiSelect .content ul li.selected-part .header{
 	border: 2px solid #6DB0BE;
 }
-.multiSelect .content ul li.selected-part .head span{
+.multiSelect .content ul li.selected-part .header span{
 	display: block;
 	background-color: #6DB0BE;
 }
@@ -67,22 +70,22 @@
 /*全选*/
 .multiSelect .content ul li.selected-all{ 
 }
-.multiSelect .content ul li.selected-all .head{
+.multiSelect .content ul li.selected-all .header{
 	background: url(../img/icons.png) no-repeat right -1px;
 	border: 2px solid #BBB7D4;;
 }
-.multiSelect .content ul li.selected-all .head span{
+.multiSelect .content ul li.selected-all .header span{
 	display: none;
 }
 /*按下状态*/
 .multiSelect .content ul li.on{ 
 	background-color: #EAEAEA;
 }
-.multiSelect .content ul li.on .head{ 
+.multiSelect .content ul li.on .header{ 
 	border-color: transparent;
 	background: none;
 }
-.multiSelect .content ul li.on .head .num{
+.multiSelect .content ul li.on .header .num{
 	display: none;				
 }
 .multiSelect .level1,
@@ -141,6 +144,7 @@
     padding-right: 30px;
     line-height: 1.1em;
     cursor: pointer;
+    float: left;
 }
 .multiSelect .selected-stage .item .icon{
 	background: url(../img/icons.png) no-repeat 2px -33px;
@@ -171,4 +175,25 @@
 }
 .multiSelect .selected-stage .item.level3 .icon{
 	background-position:  2px -113px;
+}
+
+/**切换按钮*/
+.multiSelect .switch-btn{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 41px;
+	height: 41px;
+	background: url(../img/icons.png) no-repeat 0px -160px;
+}
+.multiSelect .switch-btn .arrow{
+	height: 100%;
+	width: 100%;
+	background: url(../img/icons.png) no-repeat 18px -205px;
+}
+.multiSelect .switch-btn .arrow.close{
+	background-position-y: -246px;
+}
+.multiSelect .switch-panel{
+	overflow: hidden;
 }
